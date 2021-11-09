@@ -1,13 +1,28 @@
-{
+[{
+  "name": "default",
   "type": "postgres",
-  "host": "localhost",
-  "port": 5432,
+  "host": "3.143.105.105",
+  "port": 4321,
   "username": "postgres",
-  "password": "roberta0310",
-  "database": "gostack_desafio06",
-  "entities": ["./src/models/*.ts"],
-  "migrations": ["./src/database/migrations/*.ts"],
+  "password": "ags001#postgres",
+  "database": "challengeByCoders",
+  "entities": ["./src/domain/**/entities/*.ts"],
+  "migrations": ["./src/shared/infra/database/migrations/*.ts"],
   "cli": {
-    "migrationsDir": "./src/database/migrations"
+    "migrationsDir": "./src/shared/infra/database/migrations"
   }
-}
+},
+{
+  "name": "seeds",
+  "type": "postgres",
+  "host": "3.143.105.105",
+  "port": 4321,
+  "username": "postgres",
+  "password": "ags001#postgres",
+  "database": "challengeByCoders",
+  "entities": ["./src/domain/**/entities/*.ts"],
+  "migrations": ["./src/shared/infra/database/seeds/migrations/*.ts"],
+  "cli": {
+    "migrationsDir": "./src/shared/infra/database/seeds/migrations"
+  }
+}]

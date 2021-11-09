@@ -1,23 +1,21 @@
 import request from 'supertest';
 import path from 'path';
 import { Connection, getRepository, getConnection } from 'typeorm';
-import createConnection from '../database';
-
-import Transaction from '../models/Transaction';
-import Category from '../models/Category';
-
-import app from '../app';
+import app from '@shared/infra/http/app';
+import createConnection from '../shared/infra/database';
+import Transaction from '../domain/Transactions/entities/Transaction';
+import Category from '../domain/Transactions/entities/Category';
 
 let connection: Connection;
 
 describe('Transaction', () => {
   beforeAll(async () => {
     connection = await createConnection('test-connection');
-    
+
     await connection.query('DROP TABLE IF EXISTS transactions');
     await connection.query('DROP TABLE IF EXISTS categories');
     await connection.query('DROP TABLE IF EXISTS migrations');
-    
+
     await connection.runMigrations();
   });
 
@@ -130,7 +128,7 @@ describe('Transaction', () => {
     const categoriesRepository = getRepository(Category);
 
     const { identifiers } = await categoriesRepository.insert({
-      title: 'Salary',
+      description: 'Salary',
     });
 
     const insertedCategoryId = identifiers[0].id;
